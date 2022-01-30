@@ -79,4 +79,12 @@ func TestTop10(t *testing.T) {
 			require.Equal(t, expected, Top10(text))
 		}
 	})
+
+	t.Run("check words order", func(t *testing.T) {
+		require.Equal(t, []string{"Ab", "a", "ab"}, Top10("ab ab Ab Ab a a"))
+	})
+
+	t.Run("check punctuation", func(t *testing.T) {
+		require.Equal(t, []string{",", "-", "a-a"}, Top10("a-a - , ,"))
+	})
 }
